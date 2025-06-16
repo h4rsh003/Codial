@@ -1,1 +1,15 @@
+# Ignore sensitive files
 .env
+client/.env
+server/.env
+
+# Ignore heavy folders
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Ignore editor & system files
+uploads/
+.vscode/
+.DS_Store
+Thumbs.db
