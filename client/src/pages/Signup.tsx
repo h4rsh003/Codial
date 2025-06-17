@@ -3,8 +3,11 @@ import { Button } from "../components/ui/button";
 import { useState } from "react";
 import { Input } from "../components/ui/input";
 import api from "../lib/api";
+import { useNavigate } from "react-router-dom";
+
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [avatar, setAvatar] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [formData, setFormData] = useState({
@@ -37,15 +40,28 @@ const Signup = () => {
     if (avatar) form.append("avatar", avatar);
 
     try {
-      const res = await api.post("/auth/signup", form, {
-        withCredentials: true,
-      });
+      const res = await api.post("/auth/signup", form);
 
       console.log("Signup success:", res.data);
       alert("Signup successful!");
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        skills: "",
+        github: "",
+        resume: "",
+      });
+      setAvatar(null);
+      setPreviewUrl(null);
+
+      navigate("/login");
+
     } catch (err: unknown) {
       if (err && typeof err === "object" && "response" in err) {
-        const axiosErr = err as { response?: { data: any } };
+        const axiosErr = err as { response?: { data: unknown } };
         console.error("Signup error:", axiosErr.response?.data || err);
         alert("Signup failed.");
       } else {
