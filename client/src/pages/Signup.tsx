@@ -5,7 +5,6 @@ import { Input } from "../components/ui/input";
 import api from "../lib/api";
 import { useNavigate } from "react-router-dom";
 
-
 const Signup = () => {
   const navigate = useNavigate();
   const [avatar, setAvatar] = useState<File | null>(null);
@@ -16,7 +15,7 @@ const Signup = () => {
     password: "",
     skills: "",
     github: "",
-    resume: "",
+    resume: "", // Google Drive or other public resume link
   });
 
   const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,14 +35,14 @@ const Signup = () => {
     form.append("password", formData.password);
     form.append("skills", formData.skills);
     form.append("github", formData.github);
-    form.append("resume", formData.resume);
+    form.append("resume", formData.resume); 
     if (avatar) form.append("avatar", avatar);
 
     try {
       const res = await api.post("/auth/signup", form);
 
-      console.log("Signup success:", res.data);
       alert("Signup successful!");
+      navigate("/login");
 
       // Reset form
       setFormData({
@@ -56,12 +55,9 @@ const Signup = () => {
       });
       setAvatar(null);
       setPreviewUrl(null);
-
-      navigate("/login");
-
     } catch (err: unknown) {
       if (err && typeof err === "object" && "response" in err) {
-        const axiosErr = err as { response?: { data: unknown } };
+        const axiosErr = err as { response?: { data: any } };
         console.error("Signup error:", axiosErr.response?.data || err);
         alert("Signup failed.");
       } else {
@@ -136,7 +132,7 @@ const Signup = () => {
           <Input
             id="resume"
             type="url"
-            placeholder="https://your-resume-link.com"
+            placeholder="https://drive.google.com/..."
             value={formData.resume}
             onChange={(e) => setFormData({ ...formData, resume: e.target.value })}
           />
@@ -146,11 +142,17 @@ const Signup = () => {
           <Label htmlFor="avatar">Profile Avatar</Label>
           <Input id="avatar" type="file" accept="image/*" onChange={handleAvatarChange} />
           {previewUrl && (
-            <img src={previewUrl} alt="Avatar Preview" className="mt-2 w-24 h-24 rounded-full object-cover" />
+            <img
+              src={previewUrl}
+              alt="Avatar Preview"
+              className="mt-2 w-24 h-24 rounded-full object-cover"
+            />
           )}
         </div>
 
-        <Button type="submit" className="w-full mt-4">Sign Up</Button>
+        <Button type="submit" className="w-full mt-4">
+          Sign Up
+        </Button>
       </form>
     </div>
   );
