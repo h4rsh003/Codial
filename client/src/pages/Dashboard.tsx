@@ -88,6 +88,16 @@ const Dashboard = () => {
             View Resume
           </a>
         </p>
+        <p><strong>My Projects:</strong>{" "}
+          <a
+            className="text-blue-500 underline"
+            href="/my-projects"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Projects
+          </a>
+        </p>
 
         {user.avatar && (
           <div>
