@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import UploadProject from "./pages/UploadProject";
 import MyProjects from "./pages/MyProjects";
+import EditProject from "./pages/EditProject";
 
 const App = () => {
   return (
@@ -14,6 +15,8 @@ const App = () => {
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/upload-project" element={<UploadProject />} />
         <Route path="/my-projects" element={<MyProjects />} />
+        <Route path="/edit-project/:id" element={<EditProject />} />
+
 
 
       </Routes>

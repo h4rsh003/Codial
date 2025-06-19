@@ -49,8 +49,40 @@ const deleteProject = async (req, res) => {
   }
 };
 
+const updateProject = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, description, techStack, github, liveLink } = req.body;
+    const thumbnail = req.file ? `/uploads/${req.file.filename}` : undefined;
+
+    const updateFields = {
+      title,
+      description,
+      techStack,
+      github,
+      liveLink,
+    };
+
+    if (thumbnail) updateFields.thumbnail = thumbnail;
+
+    const updatedProject = await Project.findOneAndUpdate(
+      { _id: id, user: req.user },
+      updateFields,
+      { new: true }
+    );
+
+    if (!updatedProject) return res.status(404).json({ message: "Project not found" });
+
+    res.json({ message: "Project updated", project: updatedProject });
+  } catch (error) {
+    console.error("Update Project Error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 module.exports = {
     createProject,
     getMyProjects,
     deleteProject,
+    updateProject,
 };

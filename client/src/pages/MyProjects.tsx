@@ -115,6 +115,14 @@ const MyProjects = () => {
                   Live Link
                 </a>
               )}
+              <div className="absolute bottom-0 right-10">
+                <Button
+                  className="mt-2 bg-yellow-500 text-white px-4 py-1 rounded"
+                  onClick={() => navigate(`/edit-project/${project._id}`)}
+                >
+                  Edit
+                </Button>
+              </div>
 
               {/* ✅ Bottom-Right Delete Icon */}
               <div className="absolute bottom-3 right-3">
