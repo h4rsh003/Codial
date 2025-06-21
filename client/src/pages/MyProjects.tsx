@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../lib/api";
-import { Plus, Trash2 } from "lucide-react";
+import {Trash2 } from "lucide-react";
 import { Button } from "../components/ui/button";
 
 type Project = {
@@ -67,13 +67,6 @@ const MyProjects = () => {
     <div className="max-w-4xl mx-auto mt-10 p-4">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">My Uploaded Projects</h1>
-        <Button
-          className="bg-green-600 text-white hover:bg-green-700 flex items-center gap-2"
-          onClick={() => navigate("/upload-project")}
-        >
-          <Plus size={18} />
-          Upload Project
-        </Button>
       </div>
 
       {projects.length === 0 ? (

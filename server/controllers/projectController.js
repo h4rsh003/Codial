@@ -80,9 +80,21 @@ const updateProject = async (req, res) => {
   }
 };
 
+const getAllProjects = async (req, res) => {
+  try {
+    const projects = await Project.find().populate("user", "name avatar");
+    res.json({ projects });
+  } catch (error) {
+    console.error("Get All Projects Error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+
 module.exports = {
     createProject,
     getMyProjects,
     deleteProject,
     updateProject,
+    getAllProjects,
 };
