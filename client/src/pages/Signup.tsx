@@ -39,8 +39,7 @@ const Signup = () => {
     if (avatar) form.append("avatar", avatar);
 
     try {
-      const res = await api.post("/auth/signup", form);
-
+      await api.post("/auth/signup", form);
       alert("Signup successful!");
       navigate("/login");
 
@@ -57,7 +56,7 @@ const Signup = () => {
       setPreviewUrl(null);
     } catch (err: unknown) {
       if (err && typeof err === "object" && "response" in err) {
-        const axiosErr = err as { response?: { data: any } };
+        const axiosErr = err as { response?: { data: unknown } };
         console.error("Signup error:", axiosErr.response?.data || err);
         alert("Signup failed.");
       } else {
