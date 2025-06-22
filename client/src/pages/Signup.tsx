@@ -39,8 +39,8 @@ const Signup = () => {
     if (avatar) form.append("avatar", avatar);
 
     try {
-      await api.post("/auth/signup", form);
-      alert("Signup successful!");
+      const res = await api.post("/auth/signup", form);
+      alert(res.data.message || "Signup successful!");
       navigate("/login");
 
       // Reset form
