@@ -5,6 +5,7 @@ const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const projectRoutes = require('./routes/projectRoutes');
+const cors = require('cors');
 
 dotenv.config();
 connectDB();
@@ -17,6 +18,11 @@ app.use("/api/user", userRoutes);
 app.use("/uploads", express.static("uploads"));
 app.get("/", (req, res) => res.send("API running"));
 app.use("/api/projects", projectRoutes);
+
+app.use(cors({
+  origin: "https://codial.vercel.app", // ← Vercel domain
+  credentials: true
+}));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
