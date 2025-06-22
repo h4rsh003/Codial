@@ -20,7 +20,7 @@ app.get("/", (req, res) => res.send("API running"));
 app.use("/api/projects", projectRoutes);
 
 app.use(cors({
-  origin: "https://codial.vercel.app", // ← Vercel domain
+  origin: "https://codial-woad.vercel.app/",
   credentials: true
 }));
 
