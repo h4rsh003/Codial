@@ -4,8 +4,20 @@ import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { Label } from "../components/ui/label";
 import api from "../lib/api";
+const IMAGE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
 
 const EditProject = () => {
+
+  type Project = {
+    _id: string;
+    title: string;
+    description: string;
+    techStack: string;
+    github: string;
+    liveLink?: string;
+    thumbnail?: string;
+  };
+
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -34,7 +46,7 @@ const EditProject = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        const project = res.data.projects.find((p: any) => p._id === id);
+        const project = res.data.projects.find((p: Project) => p._id === id);
         if (!project) {
           alert("Project not found.");
           return;
@@ -49,7 +61,7 @@ const EditProject = () => {
         });
 
         if (project.thumbnail) {
-          setPreviewUrl(`http://localhost:5000${project.thumbnail}`);
+          setPreviewUrl(`${IMAGE_URL}${project.thumbnail}`);
         }
       } catch (err) {
         console.error("Fetch project error:", err);
@@ -95,9 +107,13 @@ const EditProject = () => {
 
       alert("Project updated successfully!");
       navigate("/my-projects");
-    } catch (err: any) {
-      console.error("Update error:", err.response?.data || err);
+    } catch (err) {
       alert("Failed to update project.");
+      if (err instanceof Error) {
+        console.error("Update error:", err.message);
+      } else {
+        console.error("Unknown error:", err);
+      }
     }
   };
 

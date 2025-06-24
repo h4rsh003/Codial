@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../lib/api";
+const IMAGE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
 
 type Project = {
   _id: string;
@@ -39,7 +40,7 @@ const ExploreProjects = () => {
           <div key={project._id} className="border rounded-lg shadow p-4 space-y-2">
             {project.thumbnail && (
               <img
-                src={`http://localhost:5000${project.thumbnail}`}
+                src={`${IMAGE_URL}${project.thumbnail}`}
                 alt="Project Thumbnail"
                 className="w-full h-40 object-cover rounded"
               />
@@ -50,7 +51,7 @@ const ExploreProjects = () => {
             <p className="text-sm text-gray-600">👤 {project.user.name}</p>
             {project.user.avatar && (
               <img
-                src={`http://localhost:5000${project.user.avatar}`}
+                src={`${IMAGE_URL}${project.user.avatar}`}
                 alt="User Avatar"
                 className="w-8 h-8 rounded-full object-cover"
               />
