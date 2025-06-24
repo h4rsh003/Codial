@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../lib/api";
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const IMAGE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
 // User type definition
 type User = {
   name: string;
@@ -91,7 +91,7 @@ const Dashboard = () => {
           <div>
             <p><strong>Avatar:</strong></p>
             <img
-              src={`${BASE_URL}${user.avatar}`}
+              src={`${IMAGE_URL}${user.avatar}`}
               alt="Avatar"
               className="w-24 h-24 rounded-full object-cover mt-2"
             />
