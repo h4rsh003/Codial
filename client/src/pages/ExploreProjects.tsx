@@ -40,7 +40,7 @@ const ExploreProjects = () => {
           <div key={project._id} className="border rounded-lg shadow p-4 space-y-2">
             {project.thumbnail && (
               <img
-                src={`${IMAGE_URL}${project.thumbnail}`}
+                src={project.thumbnail}
                 alt="Project Thumbnail"
                 className="w-full h-40 object-cover rounded"
               />

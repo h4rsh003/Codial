@@ -80,7 +80,7 @@ const MyProjects = () => {
             >
               {project.thumbnail && (
                 <img
-                  src={`http://localhost:5000${project.thumbnail}`}
+                  src={project.thumbnail}
                   alt="thumbnail"
                   className="w-full h-40 object-cover rounded"
                 />
@@ -110,7 +110,7 @@ const MyProjects = () => {
               )}
               <div className="absolute bottom-0 right-10">
                 <Button
-                  className="mt-2 bg-yellow-500 text-white px-4 py-1 rounded"
+                  className="text-sm bg-blue-500 text-white px-4 py-2 rounded"
                   onClick={() => navigate(`/edit-project/${project._id}`)}
                 >
                   Edit

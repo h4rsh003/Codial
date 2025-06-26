@@ -1,6 +1,8 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const streamifier = require('streamifier');
+const cloudinary = require("../config/cloudinary");
 
 // Signup
 const signup = async (req, res) => {
@@ -75,5 +77,44 @@ const login = async (req, res) => {
     res.status(500).json({ message: "Server error during login" });
   }
 };
+const updateUser = async (req, res) => {
+  try {
+    const { name, skills, github, resume } = req.body;
+    const updateFields = { name, skills, github, resume };
 
-module.exports = { signup, login };
+    // If an avatar image is uploaded
+    if (req.file) {
+      // Upload the file buffer to Cloudinary using upload_stream
+      const streamUpload = () => {
+        return new Promise((resolve, reject) => {
+          const stream = cloudinary.uploader.upload_stream(
+            { folder: "avatars" },
+            (error, result) => {
+              if (result) {
+                resolve(result);
+              } else {
+                reject(error);
+              }
+            }
+          );
+          streamifier.createReadStream(req.file.buffer).pipe(stream);
+        });
+      };
+
+      const result = await streamUpload();
+      updateFields.avatar = result.secure_url;
+    }
+
+    // Update user in DB
+    const user = await User.findByIdAndUpdate(req.user, updateFields, { new: true });
+    res.json({ message: "Profile updated", user });
+  } catch (err) {
+    console.error("Update user error:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+
+
+
+module.exports = { signup, login, updateUser };

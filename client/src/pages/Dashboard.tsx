@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../lib/api";
-const IMAGE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
+import { Button } from "../components/ui/button";
+
 // User type definition
 type User = {
   name: string;
@@ -51,6 +52,14 @@ const Dashboard = () => {
     <div className="max-w-2xl mx-auto mt-10 p-6 border rounded-xl shadow-lg">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Welcome, {user.name}</h1>
+
+        <Button
+          className="text-sm bg-blue-500 text-white px-4 py-2 rounded"
+          onClick={() => navigate("/edit-profile")}
+        >
+          Edit Profile
+        </Button>
+
       </div>
 
       <div className="space-y-4">
@@ -91,7 +100,7 @@ const Dashboard = () => {
           <div>
             <p><strong>Avatar:</strong></p>
             <img
-              src={`${IMAGE_URL}${user.avatar}`}
+              src={user.avatar}
               alt="Avatar"
               className="w-24 h-24 rounded-full object-cover mt-2"
             />

@@ -19,11 +19,6 @@ app.use(cors({
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 
-app.use("/uploads", express.static("uploads"));
-if (!fs.existsSync("uploads")) {
-  fs.mkdirSync("uploads");
-}
-
 app.get("/", (req, res) => res.send("API running"));
 app.use("/api/projects", projectRoutes);
 

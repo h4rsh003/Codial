@@ -8,6 +8,7 @@ import EditProject from "./pages/EditProject";
 import ExploreProjects from "./pages/ExploreProjects";
 import Navbar from "./components/ui/Navbar";
 import Home from "./pages/Home";
+import EditProfile from "./pages/EditProfile";
 
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/my-projects" element={<MyProjects />} />
         <Route path="/edit-project/:id" element={<EditProject />} />
         <Route path="/explore" element={<ExploreProjects />} />
+        <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/" element={<Home/>} />
       </Routes>
     </Router>
