@@ -51,7 +51,7 @@ const ExploreProjects = () => {
             <p className="text-sm text-gray-600">👤 {project.user.name}</p>
             {project.user.avatar && (
               <img
-                src={`${IMAGE_URL}${project.user.avatar}`}
+                src={project.user.avatar}
                 alt="User Avatar"
                 className="w-8 h-8 rounded-full object-cover"
               />
