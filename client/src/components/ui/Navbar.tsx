@@ -1,9 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Button } from "./button";
 
 const Navbar = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const token = localStorage.getItem("token");
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -15,8 +16,11 @@ const Navbar = () => {
         navigate("/login");
     };
 
+    const navLinkClass = (path: string) =>
+    `relative pb-1 text-white ${location.pathname === path ? "font-bold" : ""}`;
+
     return (
-        <nav className="bg-gray-800 text-white px-6 py-3 shadow-md">
+        <nav className="bg-[#000042] text-white px-6 py-3 shadow-md">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
                 <Link to="/" className="text-xl font-bold">
                     Codial
@@ -55,19 +59,19 @@ const Navbar = () => {
                 <div className="hidden sm:flex space-x-6 items-center">
                     {token && (
                         <>
-                            <Link to="/" className="hover:underline">
+                            <Link to="/" className={navLinkClass("/")}>
                                 Home
                             </Link>
-                            <Link to="/dashboard" className="hover:underline">
+                            <Link to="/dashboard" className={navLinkClass("/dashboard")}>
                                 Dashboard
                             </Link>
-                            <Link to="/upload-project" className="hover:underline">
+                            <Link to="/upload-project" className={navLinkClass("/upload-project")}>
                                 Upload
                             </Link>
-                            <Link to="/my-projects" className="hover:underline">
+                            <Link to="/my-projects" className={navLinkClass("/my-projects")}>
                                 My Projects
                             </Link>
-                            <Link to="/explore" className="hover:underline">
+                            <Link to="/explore" className={navLinkClass("/explore")}>
                                 Explore
                             </Link>
                         </>
@@ -81,14 +85,19 @@ const Navbar = () => {
                             Logout
                         </button>
                     ) : (
-                        <div className="space-x-2">
-                            <Link to="/signup" className="hover:underline">
-                                Signup
+                        <div className="flex space-x-4">
+                            <Link to="/" className={navLinkClass("/")}>
+                                Home
                             </Link>
-                            <span>/</span>
-                            <Link to="/login" className="hover:underline">
-                                Login
-                            </Link>
+                            <div>
+                                <Link to="/signup" className={navLinkClass("/signup")}>
+                                    Signup
+                                </Link>
+                                <span> / </span>
+                                <Link to="/login" className={navLinkClass("/login")}>
+                                    Login
+                                </Link>
+                            </div>
                         </div>
                     )}
                 </div>
@@ -96,22 +105,22 @@ const Navbar = () => {
 
             {/* Links (mobile dropdown) */}
             {menuOpen && (
-                <div className="sm:hidden mt-3 space-y-2 px-2">
+                <div className="flex flex-col sm:hidden mt-3 space-y-2 px-2">
                     {token && (
                         <>
-                            <Link to="/" className="block hover:underline">
+                            <Link to="/" className={navLinkClass("/")}>
                                 Home
                             </Link>
-                            <Link to="/dashboard" className="block hover:underline">
+                            <Link to="/dashboard" className={navLinkClass("/dashboard")}>
                                 Dashboard
                             </Link>
-                            <Link to="/upload-project" className="block hover:underline">
+                            <Link to="/upload-project" className={navLinkClass("/upload-project")}>
                                 Upload
                             </Link>
-                            <Link to="/my-projects" className="block hover:underline">
+                            <Link to="/my-projects" className={navLinkClass("/my-projects")}>
                                 My Projects
                             </Link>
-                            <Link to="/explore" className="block hover:underline">
+                            <Link to="/explore" className={navLinkClass("/explore")}>
                                 Explore
                             </Link>
                         </>
@@ -125,14 +134,19 @@ const Navbar = () => {
                             Logout
                         </button>
                     ) : (
-                        <div className="space-x-2">
-                            <Link to="/signup" className="hover:underline">
-                                Signup
+                        <div className="flex space-x-4">
+                            <Link to="/" className={navLinkClass("/")}>
+                                Home
                             </Link>
-                            <span>/</span>
-                            <Link to="/login" className="hover:underline">
-                                Login
-                            </Link>
+                            <div>
+                                <Link to="/signup" className={navLinkClass("/signup")}>
+                                    Signup
+                                </Link>
+                                <span> / </span>
+                                <Link to="/login" className={navLinkClass("/login")}>
+                                    Login
+                                </Link>
+                            </div>
                         </div>
                     )}
                 </div>

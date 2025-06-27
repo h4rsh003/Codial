@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       {/* Hero Section */}
       <div className="flex-grow flex flex-col justify-center items-center text-center px-4">
         <h1 className="text-4xl sm:text-5xl font-bold text-gray-800 mb-4">
@@ -12,7 +12,7 @@ const Home = () => {
           Showcase your MERN stack projects, connect with fellow developers, and build your coding portfolio in one place.
         </p>
 
-        <div className="space-x-4">
+        <div className="flexspace-x-4 ">
           <Link
             to="/signup"
             className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
@@ -21,9 +21,9 @@ const Home = () => {
           </Link>
           <Link
             to="/explore"
-            className="bg-gray-200 text-gray-800 px-6 py-2 rounded hover:bg-gray-300"
+            className=" bg-gray-200 text-gray-800 px-6 py-2 rounded hover:bg-gray-300"
           >
-            Explore Projects
+            Explore Projects <span>&#8594;</span>
           </Link>
         </div>
       </div>

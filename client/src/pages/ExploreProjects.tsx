@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import api from "../lib/api";
-const IMAGE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
 
 type Project = {
   _id: string;
@@ -12,7 +11,6 @@ type Project = {
   thumbnail?: string;
   user: {
     name: string;
-    avatar?: string;
   };
 };
 
@@ -48,20 +46,14 @@ const ExploreProjects = () => {
             <h2 className="text-xl font-semibold">{project.title}</h2>
             <p>{project.description}</p>
             <p><strong>Tech Stack:</strong> {project.techStack}</p>
-            <p className="text-sm text-gray-600">👤 {project.user.name}</p>
-            {project.user.avatar && (
-              <img
-                src={project.user.avatar}
-                alt="User Avatar"
-                className="w-8 h-8 rounded-full object-cover"
-              />
-            )}
-            <div className="flex flex-wrap gap-2 mt-2">
+
+            <div className="flex flex-wrap gap-3 mt-2">
               <a href={project.github} target="_blank" className="text-blue-500 underline">GitHub</a>
               {project.liveLink && (
-                <a href={project.liveLink} target="_blank" className="text-green-600 underline">Live Demo</a>
+                <a href={project.liveLink} target="_blank" className="text-blue-500 underline">Live Demo</a>
               )}
             </div>
+            <p className="text-sm font-semibold">👤 {project.user.name}</p>
           </div>
         ))}
       </div>
