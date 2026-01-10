@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import api from "../lib/api"; // Import API
+import api from "../lib/api"; 
 import { 
   ArrowRight, 
   Code2, 
@@ -21,12 +21,12 @@ import {
   ExternalLink
 } from "lucide-react";
 
-// --- Types (Matching API Response) ---
+
 type Project = {
   _id: string;
   title: string;
   description: string;
-  techStack: string; // "React, Node, MongoDB"
+  techStack: string; 
   github: string;
   liveLink?: string;
   thumbnail?: string;
@@ -35,15 +35,12 @@ type Project = {
   };
 };
 
-// --- Components ---
 
 const ProjectCard = ({ project }: { project: Project }) => {
-  // Convert comma-separated string to array for tags
   const tags = project.techStack.split(',').map(tag => tag.trim()).filter(tag => tag);
 
   return (
     <div className="group flex flex-col bg-card border border-border rounded-xl overflow-hidden hover:shadow-xl hover:border-primary/30 transition-all duration-300 h-full">
-      {/* Image Section */}
       <div className="relative h-48 overflow-hidden bg-secondary/50">
         {project.thumbnail ? (
           <img 
@@ -57,7 +54,6 @@ const ProjectCard = ({ project }: { project: Project }) => {
           </div>
         )}
         
-        {/* Overlay Actions */}
         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
           <a 
             href={project.github} 
@@ -82,7 +78,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
         </div>
       </div>
 
-      {/* Content Section */}
+
       <div className="flex flex-col flex-grow p-5">
         <div className="flex justify-between items-start mb-3">
           <div>
@@ -104,7 +100,6 @@ const ProjectCard = ({ project }: { project: Project }) => {
           {project.description}
         </p>
 
-        {/* Tech Stack Pills */}
         <div className="flex flex-wrap gap-2 mt-auto">
           {tags.slice(0, 3).map((tag, index) => (
             <span key={index} className="px-2 py-1 bg-secondary/50 text-secondary-foreground text-[10px] font-semibold rounded-md uppercase tracking-wider border border-border/50">
@@ -121,8 +116,6 @@ const ProjectCard = ({ project }: { project: Project }) => {
 };
 
 // ==========================================
-// VIEW 1: LOGGED IN DASHBOARD
-// ==========================================
 const DashboardView = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
@@ -132,10 +125,10 @@ const DashboardView = () => {
     const fetchFeed = async () => {
       try {
         setLoading(true);
-        // Using the explore endpoint as the main feed for now
+
         const res = await api.get("/projects/explore");
         const allProjects = Array.isArray(res.data.projects) ? res.data.projects : [];
-        // Slice to show only the first 3 projects
+
         setProjects(allProjects.slice(0, 3));
       } catch (err) {
         console.error("Failed to fetch dashboard feed:", err);
@@ -148,7 +141,6 @@ const DashboardView = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-20">
-      {/* Dashboard Header */}
       <div className="bg-secondary/20 border-b border-border">
         <div className="max-w-7xl mx-auto px-4 py-10 md:py-12">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -217,8 +209,6 @@ const DashboardView = () => {
   );
 };
 
-// ==========================================
-// VIEW 2: PUBLIC LANDING PAGE
 // ==========================================
 const LandingView = () => {
   return (
@@ -360,8 +350,7 @@ const LandingView = () => {
 };
 
 // ==========================================
-// MAIN CONTROLLER
-// ==========================================
+
 const Home = () => {
   const token = localStorage.getItem("token");
 

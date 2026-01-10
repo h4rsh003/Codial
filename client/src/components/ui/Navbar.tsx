@@ -132,7 +132,7 @@ const Navbar = () => {
             <div className="flex flex-col p-4 space-y-4">
               {token ? (
                 <>
-                  {/* Added Home link here for mobile logged-in users */}
+            
                   <NavLink to="/" className={navItemClass} onClick={() => setMenuOpen(false)}>Home</NavLink>
                   <NavLink to="/explore" className={navItemClass} onClick={() => setMenuOpen(false)}>Explore</NavLink>
                   <NavLink to="/dashboard" className={navItemClass} onClick={() => setMenuOpen(false)}>Dashboard</NavLink>

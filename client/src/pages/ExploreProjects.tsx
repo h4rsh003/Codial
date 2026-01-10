@@ -10,12 +10,11 @@ import {
   Loader2
 } from 'lucide-react';
 
-// --- Types (Based on your API response) ---
 type Project = {
   _id: string;
   title: string;
   description: string;
-  techStack: string; // "React, Node, MongoDB"
+  techStack: string;
   github: string;
   liveLink?: string;
   thumbnail?: string;
@@ -24,15 +23,14 @@ type Project = {
   };
 };
 
-// --- Components ---
 
 const ProjectCard = ({ project }: { project: Project }) => {
-  // Convert comma-separated string to array for tags
+
   const tags = project.techStack.split(',').map(tag => tag.trim()).filter(tag => tag);
 
   return (
     <div className="group flex flex-col bg-card border border-border rounded-xl overflow-hidden hover:shadow-xl hover:border-primary/30 transition-all duration-300 h-full">
-      {/* Image Section */}
+
       <div className="relative h-48 overflow-hidden bg-secondary/50">
         {project.thumbnail ? (
           <img 
@@ -45,8 +43,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
             <Layout className="w-12 h-12 opacity-20" />
           </div>
         )}
-        
-        {/* Overlay Actions */}
+
         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
           <a 
             href={project.github} 
@@ -71,7 +68,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
         </div>
       </div>
 
-      {/* Content Section */}
+
       <div className="flex flex-col flex-grow p-5">
         <div className="flex justify-between items-start mb-3">
           <div>
@@ -109,8 +106,6 @@ const ProjectCard = ({ project }: { project: Project }) => {
   );
 };
 
-// --- Main Page ---
-
 const ExploreProjects = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -143,10 +138,9 @@ const ExploreProjects = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-20">
-      
-      {/* Header & Search */}
+
       <div className="relative bg-secondary/30 border-b border-border overflow-hidden">
-        {/* Background Decorative Blobs */}
+
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-50 pointer-events-none">
            <div className="absolute top-[-50%] left-[-10%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px]" />
            <div className="absolute bottom-[-50%] right-[-10%] w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px]" />
@@ -186,10 +180,10 @@ const ExploreProjects = () => {
         </div>
       </div>
 
-      {/* Main Content */}
+
       <div className="max-w-7xl mx-auto px-4 py-10">
         
-        {/* Results Header */}
+
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-xl font-semibold flex items-center gap-2">
             <Terminal className="w-5 h-5 text-primary" /> 
@@ -200,7 +194,6 @@ const ExploreProjects = () => {
           </span>
         </div>
 
-        {/* Loading State */}
         {isLoading ? (
           <div className="flex flex-col items-center justify-center py-20 text-muted-foreground">
             <Loader2 className="w-10 h-10 animate-spin mb-4 text-primary" />
@@ -208,7 +201,7 @@ const ExploreProjects = () => {
           </div>
         ) : (
           <>
-            {/* Projects Grid */}
+
             {filteredProjects.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredProjects.map((project) => (
@@ -216,7 +209,7 @@ const ExploreProjects = () => {
                 ))}
               </div>
             ) : (
-              /* Empty State */
+ 
               <div className="text-center py-20 bg-secondary/10 rounded-2xl border border-dashed border-border">
                 <div className="bg-background w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 border border-border shadow-sm">
                   <Search className="w-8 h-8 text-muted-foreground" />
