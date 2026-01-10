@@ -1,6 +1,6 @@
-import { Link, NavLink, useNavigate} from "react-router-dom";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { toast, Toaster } from "react-hot-toast";
 import { Logo } from "../logo/logo";
 
@@ -9,6 +9,26 @@ const Navbar = () => {
   const token = localStorage.getItem("token"); 
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // --- Theme Logic ---
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("theme") || "light";
+    }
+    return "light";
+  });
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.remove("light", "dark");
+    root.classList.add(theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  };
+
+  // --- Auth Logic ---
   const handleLogout = () => {
     if (window.confirm("Are you sure you want to log out?")) {
       localStorage.removeItem("token");
@@ -30,20 +50,29 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="flex h-16 items-center justify-between">
             
+            {/* Logo */}
             <Link 
-              to="/" 
+              to={token ? "/explore" : "/"} 
               className="flex items-center gap-2 hover:opacity-80 transition-opacity"
             >
               <Logo className="w-8 h-8" />
-              <span className="text-2xl font-bold tracking-tighter text-foreground font-sans">
-                Codial
-              </span>
             </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-6">
+              
+              {/* Theme Toggle Button (Desktop) */}
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-full hover:bg-accent text-foreground transition-colors mr-2"
+                title="Toggle Theme"
+              >
+                {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              </button>
+
               {token ? (
                 <>
+                  {/* Added Home link here for logged-in users */}
                   <NavLink to="/" className={navItemClass}>Home</NavLink>
                   <NavLink to="/explore" className={navItemClass}>Explore</NavLink>
                   <NavLink to="/dashboard" className={navItemClass}>Dashboard</NavLink>
@@ -78,13 +107,22 @@ const Navbar = () => {
               )}
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden p-2 text-foreground focus:outline-none"
-              onClick={() => setMenuOpen(!menuOpen)}
-            >
-              {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            {/* Mobile Actions (Theme + Menu) */}
+            <div className="flex items-center gap-2 md:hidden">
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-full hover:bg-accent text-foreground transition-colors"
+              >
+                {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              </button>
+
+              <button
+                className="p-2 text-foreground focus:outline-none"
+                onClick={() => setMenuOpen(!menuOpen)}
+              >
+                {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -94,6 +132,7 @@ const Navbar = () => {
             <div className="flex flex-col p-4 space-y-4">
               {token ? (
                 <>
+                  {/* Added Home link here for mobile logged-in users */}
                   <NavLink to="/" className={navItemClass} onClick={() => setMenuOpen(false)}>Home</NavLink>
                   <NavLink to="/explore" className={navItemClass} onClick={() => setMenuOpen(false)}>Explore</NavLink>
                   <NavLink to="/dashboard" className={navItemClass} onClick={() => setMenuOpen(false)}>Dashboard</NavLink>
