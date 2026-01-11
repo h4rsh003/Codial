@@ -34,9 +34,8 @@ const Login = () => {
       toast.success("Welcome back!");
       
       localStorage.setItem("token", response.data.token);
-      navigate("/dashboard");
+      navigate("/");
     } catch (err: unknown) {
-      // Use 'unknown' and type assertion instead of 'any'
       const error = err as ApiError;
       console.error("Login error", error.response?.data || error.message);
       toast.error(error.response?.data?.message || "Invalid credentials. Please try again.");
