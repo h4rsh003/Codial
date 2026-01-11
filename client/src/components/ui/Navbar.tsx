@@ -34,7 +34,7 @@ const Navbar = () => {
       localStorage.removeItem("token");
       setMenuOpen(false);
       toast.success("Logged out successfully!");
-      navigate("/login");
+      navigate("/");
     }
   };
 
