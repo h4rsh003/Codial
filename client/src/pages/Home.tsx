@@ -154,7 +154,7 @@ const DashboardView = () => {
             </div>
             
             <Link to="/upload-project">
-              <button className="px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-xl hover:bg-primary/90 transition-all flex items-center gap-2 shadow-lg shadow-primary/20">
+              <button className="px-6 py-3 bg-primary text-primary-foreground cursor-pointer font-semibold rounded-xl hover:bg-primary/90 transition-all flex items-center gap-2 shadow-lg shadow-primary/20">
                 <Plus className="w-5 h-5" /> Upload Project
               </button>
             </Link>
@@ -198,7 +198,8 @@ const DashboardView = () => {
          {!loading && projects.length > 0 && (
             <div className="mt-12 flex justify-center">
               <Link to="/explore">
-                <button className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors border-b border-transparent hover:border-primary pb-0.5 flex items-center gap-2">
+                <button className="text-sm font-medium text-muted-foreground hover:text-primary cursor-pointer
+                  transition-colors border-b border-transparent hover:border-primary pb-0.5 flex items-center gap-2">
                   View all Projects <ArrowRight className="w-4 h-4" />
                 </button>
               </Link>
@@ -214,7 +215,7 @@ const LandingView = () => {
   return (
     <div className="flex flex-col min-h-[calc(100vh-4rem)] bg-background text-foreground selection:bg-primary/20 selection:text-primary">
       {/* Hero Section */}
-      <section className="relative px-4 py-24 md:py-32 lg:px-8 overflow-hidden">
+      <section className="relative px-4 py-10 md:py-14 lg:px-8 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 pointer-events-none">
           <div className="absolute top-20 left-[10%] w-72 h-72 bg-primary/20 rounded-full blur-[100px] animate-pulse" />
           <div className="absolute top-40 right-[10%] w-72 h-72 bg-blue-500/20 rounded-full blur-[100px] animate-pulse delay-1000" />
@@ -240,13 +241,15 @@ const LandingView = () => {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
             <Link to="/signup">
-              <button className="w-full sm:w-auto h-12 px-8 rounded-md bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
+              <button className="w-full sm:w-auto h-12 px-8 rounded-md bg-primary text-primary-foreground font-semibold cursor-pointer
+                 hover:bg-primary/90 transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
                 Start Building <ArrowRight className="w-4 h-4" />
               </button>
             </Link>
             <Link to="/explore">
-              <button className="w-full sm:w-auto h-12 px-8 rounded-md bg-background border border-input hover:bg-accent hover:text-accent-foreground font-medium transition-colors flex items-center justify-center gap-2">
-                Explore Projects
+              <button className="w-full sm:w-auto h-12 px-8 rounded-md bg-background border border-input cursor-pointer
+                 hover:bg-accent hover:text-accent-foreground font-medium transition-colors flex items-center justify-center gap-2">
+                Explore Projects <ArrowRight className="w-4 h-4" />
               </button>
             </Link>
           </div>
@@ -254,7 +257,7 @@ const LandingView = () => {
       </section>
 
       {/* Features Grid */}
-      <section className="py-24 px-4 bg-background border-t border-border/40">
+      <section className="py-14 px-4 bg-background border-t border-border/40">
         <div className="max-w-6xl mx-auto space-y-16">
           <div className="text-center space-y-4">
             <h2 className="text-3xl md:text-5xl font-bold">Why Developers Choose Codial</h2>
@@ -339,7 +342,8 @@ const LandingView = () => {
             Join the community of developers who are documenting their journey on Codial.
           </p>
           <Link to="/signup" className="relative z-10">
-            <button className="h-12 px-8 rounded-md bg-background text-foreground font-bold hover:bg-secondary transition-colors shadow-xl">
+            <button className="h-12 px-8 rounded-md bg-background text-foreground font-bold 
+              hover:bg-secondary transition-colors shadow-xl cursor-pointer">
               Create Free Account
             </button>
           </Link>

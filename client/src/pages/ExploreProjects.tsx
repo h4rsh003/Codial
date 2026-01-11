@@ -218,7 +218,7 @@ const ExploreProjects = () => {
                 <p className="text-muted-foreground mt-2">We couldn't find any projects matching "{searchQuery}".</p>
                 <button 
                   onClick={() => setSearchQuery("")}
-                  className="mt-6 px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
+                  className="mt-6 px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium cursor-pointer"
                 >
                   Clear Search
                 </button>

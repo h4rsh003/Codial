@@ -103,7 +103,7 @@ const Dashboard = () => {
               </div>
               <button 
                 onClick={() => navigate("/edit-profile")}
-                className="absolute bottom-0 right-0 p-2 bg-primary text-primary-foreground rounded-full shadow-lg hover:bg-primary/90 transition-colors"
+                className="absolute bottom-0 right-0 p-2 bg-primary text-primary-foreground rounded-full shadow-lg hover:bg-primary/90 transition-colors cursor-pointer"
                 title="Edit Avatar"
               >
                 <Edit3 size={16} />
@@ -134,12 +134,12 @@ const Dashboard = () => {
             <div className="flex flex-col gap-3 min-w-[200px]">
               <button 
                 onClick={() => navigate("/edit-profile")}
-                className="w-full px-4 py-2.5 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 shadow-sm"
+                className="w-full px-4 py-2.5 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 shadow-sm cursor-pointer"
               >
                 <Edit3 size={18} /> Edit Profile
               </button>
               <Link to="/upload-project">
-                <button className="w-full px-4 py-2.5 bg-background border border-border text-foreground font-medium rounded-lg hover:bg-secondary/50 transition-colors flex items-center justify-center gap-2">
+                <button className="w-full px-4 py-2.5 bg-background border border-border text-foreground font-medium rounded-lg hover:bg-secondary/50 transition-colors flex items-center justify-center gap-2 cursor-pointer">
                   <Layers size={18} /> Upload Project
                 </button>
               </Link>
@@ -185,7 +185,7 @@ const Dashboard = () => {
                 Manage your portfolio items and track their performance.
               </p>
               <Link to="/my-projects">
-                <button className="w-full py-2 bg-background/50 hover:bg-background border border-primary/20 text-primary font-semibold rounded-lg transition-all">
+                <button className="w-full py-2 bg-background/50 hover:bg-background border border-primary/20 text-primary font-semibold rounded-lg transition-all cursor-pointer ">
                   View All Projects
                 </button>
               </Link>
@@ -216,7 +216,7 @@ const Dashboard = () => {
                   <p className="text-muted-foreground text-sm mb-3">No skills listed yet.</p>
                   <button 
                     onClick={() => navigate("/edit-profile")}
-                    className="text-primary text-sm font-medium hover:underline"
+                    className="text-primary text-sm font-medium hover:underline cursor-pointer"
                   >
                     Add Skills
                   </button>

@@ -101,7 +101,8 @@ const MyProjects = () => {
               <p className="text-muted-foreground mt-2">Manage and update your showcased projects.</p>
             </div>
             <Link to="/upload-project">
-              <button className="px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-xl hover:bg-primary/90 transition-all flex items-center gap-2 shadow-lg shadow-primary/20">
+              <button className="px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-xl hover:bg-primary/90
+               transition-all flex items-center gap-2 shadow-lg shadow-primary/20 cursor-pointer">
                 <Plus className="w-5 h-5" /> Upload New Project
               </button>
             </Link>
@@ -137,7 +138,8 @@ const MyProjects = () => {
               You haven't uploaded any projects to your portfolio. Start showing off your work to the community!
             </p>
             <Link to="/upload-project" className="inline-block mt-8">
-              <button className="px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-xl hover:bg-primary/90 transition-all">
+              <button className="px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-xl
+               hover:bg-primary/90 transition-all cursor-pointer">
                 Upload First Project
               </button>
             </Link>
@@ -167,14 +169,16 @@ const MyProjects = () => {
                     <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                       <button 
                         onClick={() => navigate(`/edit-project/${project._id}`)}
-                        className="p-2 bg-white/90 text-slate-700 rounded-lg hover:text-blue-600 hover:bg-white shadow-sm backdrop-blur-sm transition-colors"
+                        className="p-2 bg-white/90 text-slate-700 rounded-lg hover:text-blue-600
+                         hover:bg-white shadow-sm backdrop-blur-sm transition-colors cursor-pointer"
                         title="Edit Project"
                       >
                         <Edit className="w-4 h-4" />
                       </button>
                       <button 
                         onClick={() => handleDelete(project._id)}
-                        className="p-2 bg-white/90 text-slate-700 rounded-lg hover:text-red-600 hover:bg-white shadow-sm backdrop-blur-sm transition-colors"
+                        className="p-2 bg-white/90 text-slate-700 rounded-lg hover:text-red-600
+                         hover:bg-white shadow-sm backdrop-blur-sm transition-colors cursor-pointer"
                         title="Delete Project"
                       >
                         <Trash2 className="w-4 h-4" />
