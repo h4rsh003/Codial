@@ -52,7 +52,7 @@ const Navbar = () => {
             
             {/* Logo */}
             <Link 
-              to={token ? "/explore" : "/"} 
+              to={"/"} 
               className="flex items-center gap-2 hover:opacity-80 transition-opacity"
             >
               <Logo className="w-8 h-8" />
