@@ -4,8 +4,7 @@ import {
   Search, 
   Github, 
   ExternalLink, 
-  Layout, 
-  Terminal, 
+  Layout,  
   Sparkles,
   Loader2
 } from 'lucide-react';
@@ -146,7 +145,7 @@ const ExploreProjects = () => {
            <div className="absolute bottom-[-50%] right-[-10%] w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px]" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 py-16 md:py-20 text-center">
+        <div className="max-w-7xl mx-auto px-4 py-10 md:py-14 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-background border border-border text-xs font-medium text-muted-foreground mb-6 shadow-sm">
             <Sparkles className="w-3 h-3 text-yellow-500" />
             <span>Discover Community Projects</span>
@@ -186,7 +185,6 @@ const ExploreProjects = () => {
 
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-xl font-semibold flex items-center gap-2">
-            <Terminal className="w-5 h-5 text-primary" /> 
             All Projects
           </h2>
           <span className="text-sm text-muted-foreground bg-secondary px-3 py-1 rounded-full">
