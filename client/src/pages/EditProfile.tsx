@@ -100,7 +100,6 @@ const EditProfile = () => {
     }
   };
 
-  // Helper for consistent input styling
   const inputClasses = "block w-full pl-10 pr-3 py-2.5 bg-background border border-input rounded-lg text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all sm:text-sm";
 
   return (
