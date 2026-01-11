@@ -122,7 +122,7 @@ const Dashboard = () => {
                     href={user.github} 
                     target="_blank" 
                     rel="noreferrer"
-                    className="flex items-center gap-2 hover:text-primary transition-colors"
+                    className="mt-1 flex items-center gap-2 text-primary hover:underline font-medium break-all"
                   >
                     <Github size={16} /> GitHub Profile
                   </a>
