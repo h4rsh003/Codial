@@ -18,7 +18,6 @@ import {
 } from "lucide-react";
 import { Logo } from "../components/logo/logo";
 
-// Define error type for safety
 interface ApiError {
   response?: {
     data?: {
@@ -34,7 +33,6 @@ const Signup = () => {
   const [avatar, setAvatar] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   
-  // UI State
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   
@@ -55,7 +53,6 @@ const Signup = () => {
     }
   };
 
-  // Validation Logic
   const validateField = (name: string, value: string) => {
     let error = "";
     switch (name) {
@@ -86,8 +83,7 @@ const Signup = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Final check before submission
+
     if (Object.values(errors).some(err => err) || !formData.name || !formData.email || !formData.password) {
       toast.error("Please fix the errors in the form.");
       return;
@@ -109,7 +105,6 @@ const Signup = () => {
       toast.success(res.data.message || "Signup successful!");
       navigate("/login");
 
-      // Reset form
       setFormData({
         name: "",
         email: "",
@@ -129,21 +124,18 @@ const Signup = () => {
     }
   };
 
-  // Helper for input classes to keep code clean
   const inputClasses = "block w-full pl-10 pr-3 py-2.5 bg-background border border-input rounded-lg text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all sm:text-sm";
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-4 relative overflow-hidden py-12">
       
-      {/* Background Decor */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 pointer-events-none">
         <div className="absolute top-20 right-[20%] w-96 h-96 bg-primary/20 rounded-full blur-[120px] animate-pulse" />
         <div className="absolute bottom-20 left-[20%] w-72 h-72 bg-purple-500/10 rounded-full blur-[100px] animate-pulse delay-1000" />
       </div>
 
       <div className="w-full max-w-lg bg-card/50 backdrop-blur-xl border border-border rounded-2xl shadow-2xl p-8 animate-in fade-in zoom-in-95 duration-300">
-        
-        {/* Header */}
+
         <div className="text-center mb-8">
           <div className="flex justify-center mb-6">
             <Logo className="w-10 h-10" />
@@ -156,9 +148,6 @@ const Signup = () => {
 
         <form className="space-y-5" onSubmit={handleSubmit}>
           
-          {/* --- Mandatory Fields --- */}
-          
-          {/* Name */}
           <div className="space-y-2">
             <label className="text-sm font-medium text-foreground ml-1" htmlFor="name">Full Name</label>
             <div className="relative">
@@ -178,7 +167,6 @@ const Signup = () => {
             {errors.name && <p className="text-xs text-red-500 ml-1">{errors.name}</p>}
           </div>
 
-          {/* Email */}
           <div className="space-y-2">
             <label className="text-sm font-medium text-foreground ml-1" htmlFor="email">Email</label>
             <div className="relative">
