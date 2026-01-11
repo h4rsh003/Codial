@@ -16,11 +16,9 @@ import {
   Search,
   Sparkles,
   Plus,
-  Loader2,
-  Github,
-  ExternalLink
+  Loader2
 } from "lucide-react";
-
+import ProjectCard from '../components/projectCard/page';
 
 type Project = {
   _id: string;
@@ -33,86 +31,6 @@ type Project = {
   user: {
     name: string;
   };
-};
-
-
-const ProjectCard = ({ project }: { project: Project }) => {
-  const tags = project.techStack.split(',').map(tag => tag.trim()).filter(tag => tag);
-
-  return (
-    <div className="group flex flex-col bg-card border border-border rounded-xl overflow-hidden hover:shadow-xl hover:border-primary/30 transition-all duration-300 h-full">
-      <div className="relative h-48 overflow-hidden bg-secondary/50">
-        {project.thumbnail ? (
-          <img 
-            src={project.thumbnail} 
-            alt={project.title} 
-            className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" 
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-            <Layout className="w-12 h-12 opacity-20" />
-          </div>
-        )}
-        
-        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-          <a 
-            href={project.github} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="p-2 bg-white text-black rounded-full hover:scale-110 transition-transform"
-            title="View Code"
-          >
-            <Github className="w-5 h-5" />
-          </a>
-          {project.liveLink && (
-            <a 
-              href={project.liveLink} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-2 bg-primary text-white rounded-full hover:scale-110 transition-transform"
-              title="Live Demo"
-            >
-              <ExternalLink className="w-5 h-5" />
-            </a>
-          )}
-        </div>
-      </div>
-
-
-      <div className="flex flex-col flex-grow p-5">
-        <div className="flex justify-between items-start mb-3">
-          <div>
-            <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1">
-              {project.title}
-            </h3>
-            <div className="flex items-center gap-1.5 mt-1">
-              <div className="w-5 h-5 rounded-full bg-secondary flex items-center justify-center text-[10px] font-bold text-secondary-foreground border border-border">
-                {project.user.name.charAt(0).toUpperCase()}
-              </div>
-              <p className="text-xs text-muted-foreground">
-                by <span className="font-medium text-foreground">{project.user.name}</span>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <p className="text-muted-foreground text-sm line-clamp-2 mb-4 flex-grow">
-          {project.description}
-        </p>
-
-        <div className="flex flex-wrap gap-2 mt-auto">
-          {tags.slice(0, 3).map((tag, index) => (
-            <span key={index} className="px-2 py-1 bg-secondary/50 text-secondary-foreground text-[10px] font-semibold rounded-md uppercase tracking-wider border border-border/50">
-              {tag}
-            </span>
-          ))}
-          {tags.length > 3 && (
-            <span className="px-2 py-1 text-[10px] text-muted-foreground">+{tags.length - 3}</span>
-          )}
-        </div>
-      </div>
-    </div>
-  );
 };
 
 // ==========================================
@@ -175,7 +93,7 @@ const DashboardView = () => {
           </div>
         ) : (
           <>
-            {/* Grid */}
+            {/* Grid - Using Reusable ProjectCard Component */}
             {projects.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {projects.map((project) => (
@@ -353,12 +271,8 @@ const LandingView = () => {
   );
 };
 
-// ==========================================
-
 const Home = () => {
   const token = localStorage.getItem("token");
-
-  // If token exists, show Dashboard. Else show Landing.
   return token ? <DashboardView /> : <LandingView />;
 };
 
