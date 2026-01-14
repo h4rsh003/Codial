@@ -22,6 +22,10 @@ app.use("/api/user", userRoutes);
 app.get("/", (req, res) => res.send("API running"));
 app.use("/api/projects", projectRoutes);
 
+// Health Check Route for Cron Job
+app.get('/ping', (req, res) => {
+  res.status(200).send('Pong');
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
