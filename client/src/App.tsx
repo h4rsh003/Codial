@@ -9,6 +9,7 @@ import ExploreProjects from "./pages/ExploreProjects";
 import Navbar from "./components/ui/Navbar";
 import Home from "./pages/Home";
 import EditProfile from "./pages/EditProfile";
+import LandingPage from "./pages/landingPage";
 
 
 const App = () => {
@@ -25,7 +26,8 @@ const App = () => {
         <Route path="/edit-project/:id" element={<EditProject />} />
         <Route path="/explore" element={<ExploreProjects />} />
         <Route path="/edit-profile" element={<EditProfile />} />
-        <Route path="/" element={<Home/>} />
+        <Route path="/home" element={<Home/>} />
+        <Route path="/" element={<LandingPage/>} />
       </Routes>
     </Router>
   );
