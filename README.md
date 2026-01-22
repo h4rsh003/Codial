@@ -66,7 +66,7 @@ codial/
 
 1. **Clone the Repository**
 ```bash
-git clone [https://github.com/h4rsh003/codial.git](https://github.com/h4rsh003/codial.git)
+git clone [https://github.com/h4rsh003/Codial.git](https://github.com/h4rsh003/Codial.git)
 cd codial
 
 ```
