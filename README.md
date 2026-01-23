@@ -110,5 +110,3 @@ npm run dev # Starts on http://localhost:5173
 ---
 
 <p align="center">Made with ❤️ for the Developer Community</p>
-
-```
